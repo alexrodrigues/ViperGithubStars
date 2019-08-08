@@ -1,22 +1,9 @@
 
-# **Alex's Mavel**
+# **Viper Github**
 
 ## *First things first*
 ***
 
-
- **$ pod install** <br>
- **run the suit of tests** <br>
- **run $bundle** <br>
- **$ slather coverage -s --scheme Marvel --workspace [Workspace] [XProj]**
-
-
-## *The Architecuture*
-***
-
-In this project we use **MVVMC**. 
-
-Our **View** is binded to a **ViewModel** and notify him with all user interecations. **The ViewModel** request to our Data Provides such as **Services** or **Repository** to fetch data by using CoreData or APi classes and then return to our ViewModel that information. Our **ViewModel** has a **CoordinatorLayout** to navigate between views preveting the use of segues.
 
 ## *Third Party Libraries*
 
@@ -37,7 +24,4 @@ A Great framework to download images and present activity indicator and cache.
 
 To make sure the swift project standards
 
-## CCBottomRefreshControl: 
-
-To help us to present refreshers at bottom of collection view
 
