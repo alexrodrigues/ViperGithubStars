@@ -26,8 +26,8 @@ class Api<T: Decodable> {
     
     // MARK: - Mehods
     
-    func request(with urlString: String, method: ApiDefinitions.Method, completion: @escaping ApiCompletion) {
-        guard let url = URL(string: urlString)  else {
+    func request(with urlString: ApiDefinitions.Endpoint, method: ApiDefinitions.Method, completion: @escaping ApiCompletion) {
+        guard let url = URL(string: urlString.rawValue)  else {
             completion(.error(MyError(msg: self.errorMessage)))
             return
         }
@@ -36,15 +36,21 @@ class Api<T: Decodable> {
         urlRequest.setHttpMethod(method)
         remoteTask = URLSession.shared.dataTask(with: urlRequest) { data, _ , error in
             guard let dataReceived = data else {
-                completion(.error(MyError(msg: self.errorMessage)))
+                DispatchQueue.main.async {
+                    completion(.error(MyError(msg: self.errorMessage)))
+                }
                 return
             }
             do {
                 let objectResponse = try JSONDecoder().decode(T.self, from: dataReceived)
-                completion(.success(objectResponse))
+                DispatchQueue.main.async {
+                    completion(.success(objectResponse))
+                }
                 return
             } catch let error {
-                completion(.error(MyError(msg: error.localizedDescription)))
+                DispatchQueue.main.async {
+                    completion(.error(MyError(msg: error.localizedDescription)))
+                }
                 return
             }
         }

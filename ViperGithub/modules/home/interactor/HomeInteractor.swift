@@ -21,5 +21,17 @@ class HomeInteractor: NSObject {
 // MARK: - HomeInteractorInputProtocol
 
 extension HomeInteractor: HomeInteractorInputProtocol {
-    
+
+    func fetch() {
+        Api<GithubResponse>()
+            .request(with: .home, method: .get) { [weak self] result in
+                switch result {
+                    case .success(let repos):
+                    self?.output?.didFetchedRepos(repos: repos.items ?? [Repo]())
+                    case .error(let error):
+                    self?.output?.didFailedRequest(with: error)
+                }
+            }
+    }
+
 }

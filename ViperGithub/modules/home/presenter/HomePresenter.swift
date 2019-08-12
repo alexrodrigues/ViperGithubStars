@@ -25,6 +25,7 @@ extension HomePresenter: HomePresenterInputProtocol {
     
     func viewDidLoad() {
         view.setupViewCoding()
+        interactor.fetch()
     }
     
 }
@@ -32,5 +33,12 @@ extension HomePresenter: HomePresenterInputProtocol {
 // MARK: - HomePresenterInteractorOutputProtocol
 
 extension HomePresenter: HomeInteractorOutputProtocol {
-    
+
+    func didFetchedRepos(repos: [Repo]) {
+        view.didFetchedRepos(repos: repos)
+    }
+
+    func didFailedRequest(with error: MyError) {
+        view.failedFetchRepos(message: error.localizedDescription)
+    }
 }

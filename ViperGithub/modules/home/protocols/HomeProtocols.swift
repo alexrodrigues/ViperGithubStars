@@ -17,7 +17,7 @@ protocol HomeWireframeProtocol: class {
 // MARK: - Interactor
 
 protocol HomeInteractorInputProtocol {
-
+    func fetch()
 }
 
 // MARK: - Presenter
@@ -27,13 +27,16 @@ protocol HomePresenterInputProtocol: class {
 }
 
 protocol HomeInteractorOutputProtocol: class {
-
+    func didFetchedRepos(repos: [Repo])
+    func didFailedRequest(with error: MyError)
 }
 
 // MARK: - View
 
 protocol HomePresenterOutputProtocol: class {
     func setupViewCoding()
+    func didFetchedRepos(repos: [Repo])
+    func failedFetchRepos(message: String)
 }
 
 // MARK: - Analytics

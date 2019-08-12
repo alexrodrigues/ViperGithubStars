@@ -12,12 +12,10 @@ struct ApiDefinitions {
     
     // MARK: - The BASE URL
     
-    static let baseUrl = "http://careers.picpay.com/tests/mobdev/"
-    
     // MARK: - Possible Endpoints
     
     enum Endpoint: String {
-        case home
+        case home = "https://api.github.com/search/repositories?q=language:swift&sort=stars"
     }
     
     // MARK: - Possible Http Methods
